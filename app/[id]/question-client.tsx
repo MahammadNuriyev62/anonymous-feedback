@@ -87,13 +87,12 @@ export default function QuestionClient({
 
   if (error || !question) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen bg-[#0f0f23] flex items-center justify-center p-4">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">{error}</h1>
-          <Link
-            href="/"
-            className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-          >
+          <h1 className="text-2xl font-bold text-white mb-6">
+            {error || "Question not found"}
+          </h1>
+          <Link href="/" className="openai-button px-6 py-3 inline-block">
             Create New Question
           </Link>
         </div>
@@ -102,92 +101,134 @@ export default function QuestionClient({
   }
 
   return (
-    <div className="min-h-screen p-4 py-8">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <Link
-            href="/"
-            className="inline-flex items-center text-white/80 hover:text-white mb-4 transition-colors"
-          >
-            ← Create New Question
-          </Link>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            {question.question}
-          </h1>
-          <button
-            onClick={copyToClipboard}
-            className="bg-white/20 text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-colors"
-          >
-            📋 Share This Question
-          </button>
-        </div>
-
-        {/* Feedback Form */}
-        <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 md:p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Share Your Feedback
-          </h2>
-          <form onSubmit={handleSubmitFeedback} className="space-y-4">
-            <textarea
-              value={newFeedback}
-              onChange={(e) => setNewFeedback(e.target.value)}
-              placeholder="Your honest feedback is valuable. Share your thoughts anonymously..."
-              className="w-full h-32 px-4 py-3 border-2 border-gray-200 rounded-xl resize-none focus:border-purple-500 focus:outline-none transition-colors duration-200 placeholder-gray-400"
-              maxLength={1000}
-              disabled={isSubmitting}
-            />
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-500">
-                {newFeedback.length}/1000 characters
-              </span>
-              <button
-                type="submit"
-                disabled={!newFeedback.trim() || isSubmitting}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+    <div className="min-h-screen bg-[#0f0f23] text-white">
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <Link
+              href="/"
+              className="inline-flex items-center text-gray-400 hover:text-white mb-6 transition-colors text-sm"
+            >
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                {isSubmitting ? "Submitting..." : "Submit Feedback"}
-              </button>
-            </div>
-          </form>
-        </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              Back to home
+            </Link>
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+              {question.question}
+            </h1>
+            <button
+              onClick={copyToClipboard}
+              className="openai-button-secondary px-4 py-2 text-sm"
+            >
+              <svg
+                className="w-4 h-4 inline mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                />
+              </svg>
+              Copy link
+            </button>
+          </div>
 
-        {/* Feedbacks */}
-        <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 md:p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            Community Feedback ({feedbacks.length})
-          </h2>
-
-          {feedbacks.length === 0 ? (
-            <div className="text-center py-12 text-gray-500">
-              <div className="text-4xl mb-4">💭</div>
-              <p className="text-lg">
-                No feedback yet. Be the first to share your thoughts!
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {feedbacks.map((feedback) => (
-                <div
-                  key={feedback._id}
-                  className="bg-gray-50 rounded-xl p-4 md:p-6 border-l-4 border-purple-500"
+          {/* Feedback Form */}
+          <div className="openai-card p-6 md:p-8 mb-8">
+            <h2 className="text-xl font-semibold mb-6 text-white">
+              Share your feedback
+            </h2>
+            <form onSubmit={handleSubmitFeedback} className="space-y-4">
+              <textarea
+                value={newFeedback}
+                onChange={(e) => setNewFeedback(e.target.value)}
+                placeholder="Your honest feedback is valuable. Share your thoughts anonymously..."
+                className="openai-input w-full h-32 px-4 py-3 resize-none"
+                maxLength={1000}
+                disabled={isSubmitting}
+              />
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-gray-400">
+                  {newFeedback.length}/1000
+                </span>
+                <button
+                  type="submit"
+                  disabled={!newFeedback.trim() || isSubmitting}
+                  className="openai-button py-2 px-6 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <p className="text-gray-800 leading-relaxed mb-2">
-                    {feedback.feedback}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    {new Date(feedback.createdAt).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </p>
-                </div>
-              ))}
-            </div>
-          )}
+                  {isSubmitting ? "Submitting..." : "Submit feedback"}
+                </button>
+              </div>
+            </form>
+          </div>
+
+          {/* Feedbacks */}
+          <div className="openai-card p-6 md:p-8">
+            <h2 className="text-xl font-semibold mb-6 text-white">
+              Feedback ({feedbacks.length})
+            </h2>
+
+            {feedbacks.length === 0 ? (
+              <div className="text-center py-12 text-gray-400">
+                <svg
+                  className="w-12 h-12 mx-auto mb-4 opacity-50"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1}
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                </svg>
+                <p className="text-lg">No feedback yet</p>
+                <p className="text-sm">Be the first to share your thoughts</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {feedbacks.map((feedback) => (
+                  <div
+                    key={feedback._id}
+                    className="bg-[#2d2d42] rounded-lg p-4 md:p-6 border-l-4 border-[#10a37f]"
+                  >
+                    <p className="text-gray-100 leading-relaxed mb-3">
+                      {feedback.feedback}
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      {new Date(feedback.createdAt).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        }
+                      )}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
