@@ -4,11 +4,10 @@ import { Metadata } from "next";
 import QuestionClient from "./question-client";
 
 // Server-side function to generate metadata
-export async function generateMetadata({
-  params,
-}: {
-  params: { id: string };
+export async function generateMetadata(props: {
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
+  const params = await props.params;
   try {
     if (!ObjectId.isValid(params.id)) {
       return {
@@ -59,11 +58,10 @@ export async function generateMetadata({
 }
 
 // Server component
-export default async function QuestionPage({
-  params,
-}: {
-  params: { id: string };
+export default async function QuestionPage(props: {
+  params: Promise<{ id: string }>;
 }) {
+  const params = await props.params;
   let question = null;
   let error = "";
 
