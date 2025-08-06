@@ -8,6 +8,26 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Anonymous Feedback",
   description: "Collect anonymous feedback from anyone",
+  openGraph: {
+    title: "Anonymous Feedback",
+    description: "Collect anonymous feedback from anyone",
+    images: [
+      {
+        url: "https://i.pinimg.com/564x/33/de/97/33de974459778d84e4831821cd34914c.jpg",
+        width: 500,
+        height: 500,
+        alt: "Anonymous Feedback Preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Anonymous Feedback",
+    description: "Collect anonymous feedback from anyone",
+    images: [
+      "https://i.pinimg.com/564x/33/de/97/33de974459778d84e4831821cd34914c.jpg",
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -17,14 +37,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <meta
-          property="og:image"
-          content={
-            "https://i.pinimg.com/564x/33/de/97/33de974459778d84e4831821cd34914c.jpg"
-          }
-        />
-      </Head>
       <body className={inter.className}>{children}</body>
     </html>
   );
