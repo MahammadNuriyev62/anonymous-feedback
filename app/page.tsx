@@ -90,8 +90,8 @@ export default function HomePage() {
           </div>
 
           {/* Features */}
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
+            <div className="text-center bg-gray-900/30 backdrop-blur-sm rounded-lg p-6 border border-gray-800/50">
               <div className="w-12 h-12 bg-[#10a37f] rounded-lg flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-6 h-6 text-white"
@@ -108,12 +108,12 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold mb-2">Anonymous</h3>
-              <p className="text-gray-400">
+              <p className="text-gray-400 text-sm md:text-base px-2 md:px-0 leading-relaxed">
                 No sign-up required. Complete privacy for respondents.
               </p>
             </div>
 
-            <div className="text-center">
+            <div className="text-center bg-gray-900/30 backdrop-blur-sm rounded-lg p-6 border border-gray-800/50">
               <div className="w-12 h-12 bg-[#10a37f] rounded-lg flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-6 h-6 text-white"
@@ -130,12 +130,12 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold mb-2">Instant</h3>
-              <p className="text-gray-400">
+              <p className="text-gray-400 text-sm md:text-base px-2 md:px-0 leading-relaxed">
                 Get your shareable link immediately and start collecting.
               </p>
             </div>
 
-            <div className="text-center">
+            <div className="text-center bg-gray-900/30 backdrop-blur-sm rounded-lg p-6 border border-gray-800/50">
               <div className="w-12 h-12 bg-[#10a37f] rounded-lg flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-6 h-6 text-white"
@@ -152,7 +152,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold mb-2">Shareable</h3>
-              <p className="text-gray-400">
+              <p className="text-gray-400 text-sm md:text-base px-2 md:px-0 leading-relaxed">
                 Easy sharing across all platforms and social media.
               </p>
             </div>
