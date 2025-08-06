@@ -51,7 +51,7 @@ export default function HomePage() {
           </div>
 
           {/* Main Form */}
-          <div className="openai-card p-4 md:p-4 max-w-2xl mx-auto">
+          <div className="openai-card p-4 md:p-4 max-w-4xl mx-auto">
             <h2 className="text-xl md:text-2xl font-semibold mb-4 text-white">
               What do you want to know?
             </h2>

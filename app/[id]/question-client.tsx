@@ -150,7 +150,7 @@ export default function QuestionClient({
           </div>
 
           {/* Feedback Form */}
-          <div className="openai-card p-6 md:p-8 mb-8">
+          <div className="openai-card p-4 md:p-4 mb-8">
             <h2 className="text-xl font-semibold mb-6 text-white">
               Share your feedback
             </h2>
@@ -179,7 +179,7 @@ export default function QuestionClient({
           </div>
 
           {/* Feedbacks */}
-          <div className="openai-card p-6 md:p-8">
+          <div className="openai-card p-4 md:p-4">
             <h2 className="text-xl font-semibold mb-6 text-white">
               Feedback ({feedbacks.length})
             </h2>
